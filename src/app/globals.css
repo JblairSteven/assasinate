@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-afacad: "Afacad", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-afacad);
+}
+
+@keyframes highlight {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  }
+  50% {
+    filter: brightness(1.5) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  }
+}
+
+.highlight-skeleton {
+  animation: highlight 2s ease-in-out;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-highlighted {
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* width */
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #6f71c3;
+}
+
+/* Handle on hover */
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6f71c380;
+}
+
+.border-frame {
+  border-image-slice: 69;
+  border-image-width: 24px;
+  border-image-repeat: repeat;
+  border-style: solid;
+}
+
+@media (min-width: 768px) {
+  .border-frame {
+    border-image-width: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .border-frame {
+    border-image-width: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .border-frame {
+    border-image-width: 64px;
+  }
+}
+
+.bg-dust {
+  /* background-image: url("/dust.png"); */
+}
+
+.button-nav-board:before {
+  /* position: absolute;
+  content: "";
+  right: -35px;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  background: white;
+  border-right: none;
+  z-index: 2;
+  -webkit-transform: skew(-30deg);
+  -moz-transform: skew(-30deg);
+  transform: skew(-30deg); */
+}
+.button-nav:before {
+  position: absolute;
+  content: "";
+  left: -45px;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  background: white;
+  border: 1px solid #000;
+  border-right: none;
+  z-index: 2;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  transform: skew(20deg);
+}
+.button-nav-logo:before {
+  position: absolute;
+  content: "";
+  left: -45px;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  background: #6f71c3;
+  border: 1px solid #000;
+  border-right: none;
+  z-index: 2;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  transform: skew(20deg);
+}
+
+.button-nav-white {
+  @apply relative py-2 px-4 md:p-4 md:pr-[5rem] outline outline-1 outline-offset-[-1px] bg-white text-black flex items-center justify-center text-center font-light md:text-xl leading-tight md:leading-6;
+}
+.button-nav-board {
+  @apply relative py-2 px-4 md:p-4  bg-white text-white flex items-center justify-start text-center font-light md:text-xl leading-tight md:leading-6;
+}
+@media (max-width: 1024px) {
+  .button-nav:before {
+    position: absolute;
+    content: "";
+    left: -10px;
+    top: 0;
+    height: 100%;
+    width: 24px;
+    background: #fff;
+    border: 1px solid #000;
+    border-right: none;
+    z-index: 2;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    transform: skew(20deg);
+  }
+  .button-nav-logo:before {
+    position: absolute;
+    content: "";
+    left: -45px;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background: #6f71c3;
+    border: 1px solid #000;
+    border-right: none;
+    z-index: 2;
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg);
+    transform: skew(20deg);
+  }
+}
+@media (min-width: 2000px) {
+  .button-nav-white {
+    @apply outline-offset-[-2px];
+  }
+}
+@media (min-width: 4000px) {
+  .button-nav-white {
+    @apply outline-offset-[-3px];
+  }
+}
+@media (min-width: 6000px) {
+  .button-nav-white {
+    @apply outline-offset-[-4px];
+  }
+}
+
+.outer {
+  /* style the outer box however we want */
+  max-width: 50ch;
+  padding: 4px;
+  /* lets make the outer cutoffs bigger cos it looks cool */
+  --corner: 60px;
+  --loading: 1px;
+  --nav:70px
+}
+.inner {
+  /* style the inner box however we want */
+  line-height: 1.5;
+}
+/* DIRECT APPROACH (less moving parts, but won't work with borders or shadows)
+-------------------------------*/
+.cut-corners {
+  clip-path: polygon(
+    /* Top edge */ 0% 0%,
+    calc(100% - var(--corner)) 0%,
+    /* Cut top-right */ 100% var(--corner),
+    /* Right edge */ 100% 100%,
+
+    /* Bottom edge */ var(--corner) 100%,
+    /* Cut bottom-left */ 0% calc(100%),
+    /* Left edge */ 0% 0%
+  );
+}
+.cut-corners-right {
+  clip-path: polygon(
+  /* Cut top-left */ var(--corner) 0%,
+  /* Top edge */ 100% 0%,
+  /* Right edge */ 100% 100%,
+  /* Bottom edge */ var(--corner) 100%,
+  /* Cut bottom-left */ 0% calc(100%),
+  /* Left edge */ 0% var(--corner),
+  /* Back to start */ var(--corner) 0%
+);
+}
+.cut-corners-left-nav {
+  clip-path: polygon(
+    /* Top-left corner */ 0% 0%,
+    /* Top edge */ 100% 0%,
+    /* Right edge */ 100% 100%,
+    /* Cut bottom-right */ calc(100%) calc(100% - var(--nav)),
+    /* Bottom edge */ calc(100% - var(--nav)) 100%,
+    /* Left edge */ 0% 100%,
+    /* Back to start */ 0% 0%
+  );
+}
+
+.cut-corners-right-nav {
+  clip-path: polygon(
+  /* Cut top-left */ var(--nav) 0%,
+  /* Top edge */ 100% 0%,
+  /* Right edge */ 100% 100%,
+  /* Bottom edge */ var(--nav) 100%,
+  /* Cut bottom-left */ 0% calc(100%),
+  /* Left edge */ 0% var(--nav),
+  /* Back to start */ var(--nav) 0%
+  );
+}
+.cut-corners-form {
+  clip-path: polygon(
+    /* Cut top-left */ var(--corner) 0%,
+    /* Top edge */ 100% 0%,
+    /* Right edge */ 100% calc(100% - var(--corner)),
+    /* Cut bottom-right */ calc(100% - var(--corner)) 100%,
+    /* Bottom edge until bottom-left */ var(--corner) 100%,
+    /* Left edge */ 0% var(--corner),
+    /* Back to start */ var(--corner) 0%
+  );
+}
+.cut-corners-loading {
+  clip-path: polygon(
+    /* Top edge */ 0% 0%,
+    calc(100% - var(--loading)) 0%,
+    /* Cut top-right */ 100% var(--loading),
+    /* Right edge */ 100% 100%,
+
+    /* Bottom edge */ var(--loading) 100%,
+    /* Cut bottom-left */ 0% calc(100% - var(--loading)),
+    /* Left edge */ 0% 0%
+  );
+}
+
+
+.cut-corners.outer
+,.cut-corners-right.outer
+,.cut-corners-left-nav.outer
+,.cut-corners-right-nav.outer
+,.cut-corners-form.outer 
+{
+  background-color: #6f71c380;
+}
+.cut-corners.inner {
+
+}
+
+/* PSEUDO-ELEMENT APPROACH (works with shadows, and can be adapted for borders etc)
+-----------------------------------*/
+.pseudo-cut-corners {
+  position: relative;
+  --corner: 1em;
+}
+
+.pseudo-cut-corners::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--corner)) 0%,
+    /* Cut top-right */ 100% var(--corner),
+    100% 100%,
+
+    var(--corner) 100%,
+    /* Cut bottom-left */ 0% calc(100% - var(--corner)),
+    0% 0%
+  );
+}
+.btn-nav-responsive {
+  @apply md:p-5 p-6 pr-[3rem] pl-[1rem] md:px-[5rem] ;
+}
+.btn-nav-responsive-right {
+  @apply md:p-5 p-6 pl-[1rem] pr-[0rem] md:px-[5rem] ;
+}
+.cut-corners-btn::after {
+  position: absolute;
+  content: "";
+  right: -25px;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  background: #9D9EE2;
+  z-index: 2;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  transform: skew(-45deg);
+}
+.cut-corners-search::after {
+  position: absolute;
+  content: "";
+  left: -25px;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  background: #9D9EE2;
+  z-index: 2;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  transform: skew(-45deg);
+}
+
