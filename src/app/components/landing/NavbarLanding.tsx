@@ -40,7 +40,7 @@ const NavbarLanding: React.FC<NavbarProps> = ({ onSearch }) => {
                 rel="noopener noreferrer"
                 className="btn-nav-responsive flex items-center justify-center w-full bg-[#161727] text-[#6F71C3]"
               >
-                BUY $ASSASINATE
+                BUY $ASSASSIN
               </Link>
             </div>
           </div>
